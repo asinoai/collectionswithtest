@@ -11,7 +11,7 @@ public class CollectionsTest {
 
     @Test
     public void basicArrayListTest() {
-        final List<Integer> list = new ArrayList<Integer>();
+        final List<Integer> list = new ArrayList<>();
 
         list.add(1);
         list.add(3);
@@ -26,7 +26,7 @@ public class CollectionsTest {
 
     @Test
     public void basicLinkedListTest() {
-        final List<Integer> list = new LinkedList<Integer>();
+        final List<Integer> list = new LinkedList<>();
 
         list.add(1);
         list.add(3);
@@ -39,7 +39,7 @@ public class CollectionsTest {
 
     @Test
     public void basicHashSetTest() {
-        final Set<Integer> set = new HashSet<Integer>();
+        final Set<Integer> set = new HashSet<>();
 
         set.addAll(Arrays.asList(1, 3));
         set.add(1);
@@ -51,7 +51,7 @@ public class CollectionsTest {
 
     @Test
     public void basicTreeSetTest() {
-        final Set<Integer> set = new TreeSet<Integer>();
+        final Set<Integer> set = new TreeSet<>();
 
         set.addAll(Arrays.asList(7, 2, 3, 9));
 
@@ -66,7 +66,7 @@ public class CollectionsTest {
 
     @Test
     public void basicHashMapTest() {
-        final Map<String, Integer> map = new HashMap<String, Integer>();
+        final Map<String, Integer> map = new HashMap<>();
 
         map.put("monday", 1);
         map.put("tuesday", 2);
@@ -82,7 +82,7 @@ public class CollectionsTest {
 
     @Test
     public void basicTreeMapTest() {
-        final Map<String, Integer> map = new TreeMap<String, Integer>();
+        final Map<String, Integer> map = new TreeMap<>();
 
         map.put("monday", 1);
         map.put("tuesday", 2);
@@ -96,6 +96,47 @@ public class CollectionsTest {
         Assert.assertEquals(map.size(), 3);
     }
 
+    @Test
+    public void customArrayListTest() {
+        final List<Fruit> list = new ArrayList<>();
 
+        Fruit alma = new Fruit("alma", 1.5);
+        list.add(alma);
+        list.add(new Fruit("korte", 2.0));
+        list.addAll(Arrays.asList(new Fruit("alma", 1.5), new Fruit("korte", 2.0), null));
+
+        Assert.assertEquals(new Fruit("alma", 1.5), list.get(0));
+
+
+        Assert.assertTrue(list.contains(new Fruit("alma", 1.5)));
+    }
+
+    @Test
+    public void customHashSetTest() {
+        final Set<Fruit> set = new HashSet<>();
+
+        set.addAll(Arrays.asList(new Fruit("alma", 1.5), new Fruit("korte", 2.0)));
+        set.add(new Fruit("alma", 1.5));
+
+        Assert.assertTrue(set.contains(new Fruit("alma", 1.5)));
+        Assert.assertEquals(2, set.size());
+
+    }
+
+    @Test
+    public void customHashMapTest() {
+        final Map<Fruit, Integer> map = new HashMap<>();
+
+        map.put(new Fruit("alma", 1.5), 1);
+        map.put(new Fruit("alma", 2.0), 2);
+        map.put(new Fruit("korte", 2.0), -5);
+        final Integer oldFridayNumber = map.put(new Fruit("korte", 2.0), 5);
+
+        Assert.assertEquals(new Integer(1), map.get(new Fruit("alma", 1.5)));
+        Assert.assertEquals(new Integer(2), map.get(new Fruit("alma", 2.0)));
+        Assert.assertEquals(new Integer(5), map.get(new Fruit("korte", 2.0)));
+        Assert.assertEquals(new Integer(-5), oldFridayNumber);
+        Assert.assertEquals(map.size(), 3);
+    }
 
 }
