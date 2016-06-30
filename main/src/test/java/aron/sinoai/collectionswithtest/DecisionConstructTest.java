@@ -95,9 +95,8 @@ public class DecisionConstructTest {
     @Test
     public void basicEnumStringTest() {
 
-        Assert.assertEquals(WeekDays.MONDAY, dayOfWeekAsEnum("monday"));
-        Assert.assertEquals(WeekDays.FRIDAY, dayOfWeekAsEnum("friday"));
-        Assert.assertEquals(null, dayOfWeekAsEnum("tuesday"));
+        Assert.assertEquals("monday", dayOfWeekWithEnum(WeekDays.MONDAY));
+        Assert.assertEquals("friday", dayOfWeekWithEnum(WeekDays.FRIDAY));
 
     }
 
@@ -106,17 +105,17 @@ public class DecisionConstructTest {
         FRIDAY
     }
 
-    private WeekDays dayOfWeekAsEnum(final String day) {
-        final WeekDays result;
+    private String dayOfWeekWithEnum(final WeekDays day) {
+        final String result;
 
         switch (day) {
-            case "monday" : {
-                result = WeekDays.MONDAY;
+            case MONDAY : {
+                result = "monday";
                 break;
             }
 
-            case "friday" : {
-                result = WeekDays.FRIDAY;
+            case FRIDAY : {
+                result = "friday";
                 break;
             }
 
